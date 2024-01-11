@@ -58,9 +58,9 @@ public class AudioManager : MonoBehaviour
     private void LoadMusicClips()
     {
         // Los recursos (ASSETS) que se cargan en TIEMPO DE EJECUCIÓN DEBEN ESTAR DENTRO de una carpeta denominada /Assets/Resources/Music
-        musicClips["MainTheme"] = Resources.Load<AudioClip>("Music/Main_Theme");
-        musicClips["InvincibilityTheme"] = Resources.Load<AudioClip>("Music/Invincibility_Theme");
-        musicClips["LoseALife"] = Resources.Load<AudioClip>("Music/Lost_A_Life");
+        musicClips["MainTheme"] = Resources.Load<AudioClip>("Music/mainTheme");
+        //musicClips["InvincibilityTheme"] = Resources.Load<AudioClip>("Music/Invincibility_Theme");
+        //musicClips["LoseALife"] = Resources.Load<AudioClip>("Music/Lost_A_Life");
     }
 
     // Método de la clase singleton para reproducir efectos de sonido
@@ -74,7 +74,7 @@ public class AudioManager : MonoBehaviour
         else Debug.LogWarning("El AudioClip " + clipName + " no se encontró en el diccionario de sfxClips.");
 
         if (clipName == "MainTheme") musicSource.loop = true;
-        else musicSource.loop = true;
+        else musicSource.loop = false;
     }
 
     // Método de la clase singleton para reproducir música de fondo

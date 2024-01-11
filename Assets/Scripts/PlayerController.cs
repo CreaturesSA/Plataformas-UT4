@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -39,7 +40,7 @@ public class PlayerController : MonoBehaviour
         if (Input.GetButtonDown("Fire1") && !isJumping)
         {
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            AudioManager.instance.PlaySFX("Jump");
+            //AudioManager.instance.PlaySFX("Jump");
         }
 
         //Dibujamos la línea
@@ -60,14 +61,24 @@ public class PlayerController : MonoBehaviour
             isJumping = false;
         }
 
+        if (rig.transform.position.y < -2.8)
+        {
+            //Time.timeScale = 0f;
+            SCManager.instance.LoadScene("EndLose");
+        }
+
 
         // ------------------------------------------------------------------------------------------
         // APLICACIÓN AL JUEGO DE PLATAFORMAS QUE UTILIZA RAYCAST PARA DETECTAR QUE ESTÁ EN EL SUELO
         // ------------------------------------------------------------------------------------------
         // Si el raycast no toca con nada el personaje está en el aire
-        if (raycast.collider == null)
+        if (raycast.collider == null && rig.velocity.y > 0)
         {
             SetAnimation("Jump");
+        }
+        if (raycast.collider == null && rig.velocity.y < 0)
+        {
+            SetAnimation("Fall");
         }
         else
         {
@@ -97,13 +108,13 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision != null)
+        if (collision != null)
         {
             if (collision.collider.CompareTag("Enemy"))
             {
-                AudioManager.instance.PlaySFX("Hit");
-                AudioManager.instance.PlayMusic("LoseALife");
-                SCManager.instance.LoadScene("GameOver");
+                //AudioManager.instance.PlaySFX("Hit");
+                //AudioManager.instance.PlayMusic("LoseALife");
+                SCManager.instance.LoadScene("EndLose");
             }
         }
     }

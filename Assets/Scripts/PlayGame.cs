@@ -1,13 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SocialPlatforms.Impl;
 
 public class PlayGame : MonoBehaviour
 {
     // Update is called once per frame
-    void Update()
+    public void PlayGameScene()
     {
-        if (Input.GetKeyDown(KeyCode.Return)) SCManager.instance.LoadScene("Game");
+        CollectableController.score = 0;
+        SCManager.instance.LoadScene("FirstLevel");
 
     }
 }
