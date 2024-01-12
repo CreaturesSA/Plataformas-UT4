@@ -14,9 +14,12 @@ public class NextLevel : MonoBehaviour
         {
             if (collision.collider.CompareTag("Player"))
             {
-                if (CollectableController.score == 3)
+                if (FruitController.fruitScore == 3)
                 {
-                    SCManager.instance.LoadScene("SecondLevel");
+                    SCManager.instance.LoadScene("Level2");
+                }else if(EnemyController.enemyScore == 1)
+                {
+                    SCManager.instance.LoadScene("Level3");
                 }
                 
             }

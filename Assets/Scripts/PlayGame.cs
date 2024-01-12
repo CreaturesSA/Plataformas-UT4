@@ -8,8 +8,9 @@ public class PlayGame : MonoBehaviour
     // Update is called once per frame
     public void PlayGameScene()
     {
-        CollectableController.score = 0;
-        SCManager.instance.LoadScene("FirstLevel");
+        FruitController.fruitScore = 0;
+        EnemyController.enemyScore = 0;
+        SCManager.instance.LoadScene("Level1");
 
     }
 }

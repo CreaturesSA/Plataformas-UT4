@@ -4,10 +4,10 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.SocialPlatforms.Impl;
 
-public class CollectableController : MonoBehaviour
+public class FruitController : MonoBehaviour
 {
-    [SerializeField] private GameObject collectable;
-    public static float score = 0;
+    [SerializeField] private GameObject fruit;
+    public static float fruitScore = 0;
     // Start is called before the first frame update
     void Start()
     {
@@ -26,8 +26,8 @@ public class CollectableController : MonoBehaviour
         {
             if (collision.collider.CompareTag("Player"))
             {
-                score++;
-                GameObject.Find("Score").GetComponent<TMP_Text>().text = ": " + score;
+                fruitScore++;
+                GameObject.Find("fruitScore").GetComponent<TMP_Text>().text = ": " + fruitScore;
                 //AudioManager.instance.PlaySFX("CollectCoin");
                 Destroy(gameObject);
             }
