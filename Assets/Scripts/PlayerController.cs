@@ -12,11 +12,13 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rig;
 
     [SerializeField] private bool isJumping = false;
+    [SerializeField] private GameObject bulletPrefab;
     // Start is called before the first frame update
     void Start()
     {
         //Camera.main.transform.SetParent(transform);
         //Camera.main.transform.position = transform.position + (Vector3.up) + (transform.forward * -10);
+      
         rig = GetComponent<Rigidbody2D>();
 
     }
@@ -37,7 +39,7 @@ public class PlayerController : MonoBehaviour
             GetComponent<SpriteRenderer>().flipX = true;
         }
 
-        if (Input.GetButtonDown("Fire1") && !isJumping)
+        if (Input.GetButtonDown("Jump") && !isJumping)
         {
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
             //AudioManager.instance.PlaySFX("Jump");
@@ -76,7 +78,7 @@ public class PlayerController : MonoBehaviour
         {
             SetAnimation("Jump");
         }
-        if (raycast.collider == null && rig.velocity.y < 0)
+        else if (raycast.collider == null && rig.velocity.y < 0)
         {
             SetAnimation("Fall");
         }
@@ -110,7 +112,7 @@ public class PlayerController : MonoBehaviour
     {
         if (collision != null)
         {
-            if (collision.collider.CompareTag("Enemy"))
+            if (collision.collider.CompareTag("Enemy") || collision.collider.CompareTag("Bat"))
             {
                 //AudioManager.instance.PlaySFX("Hit");
                 //AudioManager.instance.PlayMusic("LoseALife");

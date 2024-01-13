@@ -1,25 +1,35 @@
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
+using UnityEditor.SearchService;
 using UnityEngine;
-using UnityEngine.SocialPlatforms.Impl;
+using UnityEngine.SceneManagement;
 
 public class NextLevel : MonoBehaviour
 {
+    UnityEngine.SceneManagement.Scene actualScene;
+    private void Start()
+    {
+        actualScene = SceneManager.GetActiveScene();
+    }
 
-  
-        private void OnCollisionEnter2D(Collision2D collision)
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         if (collision != null)
         {
             if (collision.collider.CompareTag("Player"))
             {
-                if (FruitController.fruitScore == 3)
+                if (actualScene.name == "Level1")
                 {
-                    SCManager.instance.LoadScene("Level2");
-                }else if(EnemyController.enemyScore == 1)
+                    if(FruitController.fruitScore == 1)
+                    {
+                        SCManager.instance.LoadScene("Level2");
+                    }
+                   
+                }else if (actualScene.name == "Level2")
                 {
-                    SCManager.instance.LoadScene("Level3");
+                    if(FruitController.fruitScore == 2)
+                    {
+                        SCManager.instance.LoadScene("Level3");
+                    }
+                    
                 }
                 
             }

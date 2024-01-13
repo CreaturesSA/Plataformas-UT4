@@ -9,8 +9,6 @@ public class PlayGame : MonoBehaviour
     public void PlayGameScene()
     {
         FruitController.fruitScore = 0;
-        EnemyController.enemyScore = 0;
         SCManager.instance.LoadScene("Level1");
-
     }
 }
