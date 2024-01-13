@@ -47,12 +47,14 @@ public class EnemyMovement : MonoBehaviour
         //}
 
         if (goLeft)
-        { 
+        {
+            GetComponent<SpriteRenderer>().flipX = false;
             enemyRig.velocity = (-transform.right * enemySpeed) +
             (transform.up * enemyRig.velocity.y);
         }
         else if (goRight)
         {
+            GetComponent<SpriteRenderer>().flipX = true;
             enemyRig.velocity = (transform.right * enemySpeed) +
             (transform.up * enemyRig.velocity.y);
         }

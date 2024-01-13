@@ -49,9 +49,10 @@ public class AudioManager : MonoBehaviour
     private void LoadSFXClips()
     {
         // Los recursos (ASSETS) que se cargan en TIEMPO DE EJECUCIÓN DEBEN ESTAR DENTRO de una carpeta denominada /Assets/Resources/SFX
-        sfxClips["Jump"] = Resources.Load<AudioClip>("SFX/Jump");
-        sfxClips["CollectCoin"] = Resources.Load<AudioClip>("SFX/Collect_Coin");
-        sfxClips["Hit"] = Resources.Load<AudioClip>("SFX/Hit");
+        sfxClips["Jump"] = Resources.Load<AudioClip>("SFX/JumpSFX");
+        sfxClips["Lose"] = Resources.Load<AudioClip>("SFX/LoseSFX");
+        sfxClips["Hit"] = Resources.Load<AudioClip>("SFX/HitSFX");
+        sfxClips["1up"] = Resources.Load<AudioClip>("SFX/1upSFX");
     }
 
     // Método privado para cargar la música de fondo directamente desde las carpetas
@@ -74,7 +75,6 @@ public class AudioManager : MonoBehaviour
         else Debug.LogWarning("El AudioClip " + clipName + " no se encontró en el diccionario de sfxClips.");
 
         if (clipName == "MainTheme") musicSource.loop = true;
-        else musicSource.loop = false;
     }
 
     // Método de la clase singleton para reproducir música de fondo

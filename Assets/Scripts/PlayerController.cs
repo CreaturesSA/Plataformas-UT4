@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     private Rigidbody2D rig;
 
     [SerializeField] private bool isJumping = false;
-    [SerializeField] private GameObject bulletPrefab;
+    [SerializeField] private ParticleSystem jumpParticles;
     // Start is called before the first frame update
     void Start()
     {
@@ -41,8 +41,10 @@ public class PlayerController : MonoBehaviour
 
         if (Input.GetButtonDown("Jump") && !isJumping)
         {
+            AudioManager.instance.PlaySFX("Jump");
+            jumpParticles.Play();
             GetComponent<Rigidbody2D>().AddForce(Vector2.up * jumpForce, ForceMode2D.Impulse);
-            //AudioManager.instance.PlaySFX("Jump");
+            
         }
 
         //Dibujamos la línea
@@ -66,6 +68,8 @@ public class PlayerController : MonoBehaviour
         if (rig.transform.position.y < -2.8)
         {
             //Time.timeScale = 0f;
+            AudioManager.instance.musicSource.Stop();
+            AudioManager.instance.PlaySFX("Lose");
             SCManager.instance.LoadScene("EndLose");
         }
 
@@ -114,8 +118,8 @@ public class PlayerController : MonoBehaviour
         {
             if (collision.collider.CompareTag("Enemy") || collision.collider.CompareTag("Bat"))
             {
-                //AudioManager.instance.PlaySFX("Hit");
-                //AudioManager.instance.PlayMusic("LoseALife");
+                AudioManager.instance.musicSource.Stop();
+                AudioManager.instance.PlaySFX("Lose");
                 SCManager.instance.LoadScene("EndLose");
             }
         }

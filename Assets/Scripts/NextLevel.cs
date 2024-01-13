@@ -30,8 +30,16 @@ public class NextLevel : MonoBehaviour
                         SCManager.instance.LoadScene("Level3");
                     }
                     
+                }else if (actualScene.name == "Level3")
+                {
+                    if (FruitController.fruitScore == 6)
+                    {
+                        AudioManager.instance.musicSource.Stop();
+                        SCManager.instance.LoadScene("EndVictory");
+                    }
                 }
-                
+
+
             }
         }
     }

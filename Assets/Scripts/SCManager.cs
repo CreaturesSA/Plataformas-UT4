@@ -30,6 +30,7 @@ public class SCManager : MonoBehaviour
     // Método para cargar una nueva escena por nombre
     public void LoadScene(string sceneName)
     {
+        FruitController.fruitScore = 0;
         SceneManager.LoadScene(sceneName);
         //Para añadir una nueva escena a la actual, como por ejemplo un inventario o un mapa
         //SceneManager.LoadScene(sceneName, LoadSceneMode.Additive);

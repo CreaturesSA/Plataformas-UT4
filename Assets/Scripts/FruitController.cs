@@ -11,7 +11,7 @@ public class FruitController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -28,7 +28,7 @@ public class FruitController : MonoBehaviour
             {
                 fruitScore++;
                 GameObject.Find("fruitScore").GetComponent<TMP_Text>().text = ": " + fruitScore;
-                //AudioManager.instance.PlaySFX("CollectCoin");
+                AudioManager.instance.PlaySFX("1up");
                 Destroy(gameObject);
             }
         }
